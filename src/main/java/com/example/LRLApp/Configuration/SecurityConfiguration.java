@@ -1,4 +1,4 @@
-package com.example.LRLApp.Config;
+package com.example.LRLApp.Configuration;
 
 import com.example.LRLApp.Service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,15 +41,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/registration**", "/js/**", "/css/**", "/img/**").permitAll()
-                .anyRequest().authenticated()
-                .and().formLogin()
+                .antMatchers("/registration**", "/js/**", "/css/**", "/img/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .formLogin()
                 .loginPage("/login")
                 .permitAll()
-                .and().logout()
+                .and()
+                .logout()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
                 .permitAll();
     }
 }

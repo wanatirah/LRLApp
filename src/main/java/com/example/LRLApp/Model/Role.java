@@ -6,10 +6,9 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@Entity
 @NoArgsConstructor
 @EqualsAndHashCode
-@ToString
+@Entity
 @Table(name = "role")
 public class Role {
 

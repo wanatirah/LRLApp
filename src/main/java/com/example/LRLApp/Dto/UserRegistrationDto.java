@@ -1,15 +1,14 @@
-package com.example.LRLApp.Web.Dto;
+package com.example.LRLApp.Dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.context.annotation.Configuration;
 
 @Getter
 @Setter
 @AllArgsConstructor
-@Configuration
-public class UserRegistrationDto {
+@EqualsAndHashCode
+@ToString
+public class UserRegistrationDto { // request user's input for registration
     private String firstName;
     private String lastName;
     private String email;

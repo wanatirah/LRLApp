@@ -10,7 +10,6 @@ import java.util.Collection;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-@ToString
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Users {
 
@@ -28,8 +27,12 @@ public class Users {
 
     private String password;
 
+    private Boolean locked = false;
+
+    private Boolean enabled = false;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) //whenever we retrieve user it also retrieve role
-    @JoinTable(
+    @JoinTable( // create another table where there's user and their role
             name = "users_roles",
             joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
